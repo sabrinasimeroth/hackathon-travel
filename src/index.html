@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Hackathon Travel App</title>
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
@@ -12,8 +12,26 @@
     <!-- inject:css -->
     <!-- endinject -->
   </head>
-  <body ng-controller="WhateverController as whateverCtrl">
-    <h1>My app</h1>
+  <body ng-controller="homeController as homeCtrl">
+    <header class="jumbotron">
+      <h1>Plan A Trip!</h1>
+    </header>
+
+    <p>This text describes our App and what you can do with it.</p>
+    <form ng-submit="homeCtrl.fetch(homeCtrl.search)">
+      <input type="text" ng-model='homeCtrl.search'/>
+      <button type="submit">Search</button>
+    </form>
+    <p>{{homeCtrl.weather.main.temp}}</p>
+
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
 
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
@@ -22,6 +40,9 @@
     <!-- endbower -->
 
     <!-- inject:js -->
+    <script src="app/app.module.js"></script>
+    <script src="app/travel.controller.js"></script>
+    <script src="app/travel.factory.js"></script>
     <!-- endinject -->
   </body>
 

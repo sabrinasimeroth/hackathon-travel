@@ -1,49 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hackathon Travel App</title>
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
 
-    <!-- inject:css -->
-    <!-- endinject -->
-  </head>
-  <body ng-controller="homeController as homeCtrl">
-    <header class="jumbotron">
-      <h1>Plan A Trip!</h1>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hackathon Travel App</title>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
 
-    <p>This text describes our App and what you can do with it.</p>
-    <form ng-submit="homeCtrl.fetch(homeCtrl.search)">
-      <input type="text" ng-model='homeCtrl.search'/>
-      <button type="submit">Search</button>
-    </form>
-    <p>{{homeCtrl.weather.main.temp}}</p>
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
 
+<body ng-controller="homeController as homeCtrl">
+  <div style='background:teal' class="jumbotron">
+    <div class="container">
+      <h1 style="color:white">Do something with your life!</h1>
+      <p style="color:white">type in a city and we will provide weather details and ideas of things to do</p>
+    </div>
+  </div>
 
-    <table>
+  <div class="container">
+    <div class="row">
+      <form class="col-lg-6" ng-submit="homeCtrl.fetch(homeCtrl.search)">
+        <div class="input-group">
+          <input type="text" ng-model='homeCtrl.search' class="form-control" placeholder="Type your city here">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button">Seach!</button>
+          </span>
+        </div><!-- /input-group -->
+      </form><!-- /.col-lg-6 -->
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>The weather where you are looks like this...</h2>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th></th>
+          <th>Temperature</th>
+          <th>Looks like</th>
+          <th>High</th>
+          <th>Low</th>
         </tr>
       </thead>
+      <tbody>
+        <tr>
+          <td>{{homeCtrl.weather.main.temp}}</td>
+          <td><img src="http://openweathermap.org/img/w/{{homeCtrl.weather.weather[0].icon}}.png"></td>
+          <td>{{homeCtrl.weather.main.temp_max}}</td>
+          <td>{{homeCtrl.weather.main.temp_min}}</td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- endbower -->
+  <div class="container">
+    <div class="panel panel-default">
+      <h2 style="margin-top:0px" class="panel-heading" >You should go to the...</h2>
+      <h4 class="panel-body"><a href="https://www.google.com/maps/place/?q={{homeCtrl.parks[0].vicinity}}">{{homeCtrl.parks[0].name}}</a></h4>
+      <h4 class="panel-body"><a href="https://www.google.com/maps/place/?q={{homeCtrl.parks[1].vicinity}}">{{homeCtrl.parks[1].name}}</a></h4>
+      <h4 class="panel-body"><a href="https://www.google.com/maps/place/?q={{homeCtrl.parks[2].vicinity}}">{{homeCtrl.parks[2].name}}</a></h4>
+      <h4 class="panel-body"><a href="https://www.google.com/maps/place/?q={{homeCtrl.parks[3].vicinity}}">{{homeCtrl.parks[3].name}}</a></h4>
+      <h4 class="panel-body"><a href="https://www.google.com/maps/place/?q={{homeCtrl.parks[4].vicinity}}">{{homeCtrl.parks[4].name}}</a></h4>
+    </div>
+  </div>
 
-    <!-- inject:js -->
-    <script src="app/app.module.js"></script>
-    <script src="app/travel.controller.js"></script>
-    <script src="app/travel.factory.js"></script>
-    <!-- endinject -->
-  </body>
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <!-- endbower -->
+
+  <!-- inject:js -->
+  <script src="app/app.module.js"></script>
+  <script src="app/travel.controller.js"></script>
+  <script src="app/travel.factory.js"></script>
+  <!-- endinject -->
+</body>
 
 </html>

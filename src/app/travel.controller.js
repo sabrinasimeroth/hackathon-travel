@@ -24,7 +24,8 @@
               travelFactory
                 .getCityInfo(lat + ',' + lon)
                 .then(function(cityInfo) {
-                  console.log(cityInfo);
+                vm.parks = cityInfo.results;
+                console.log(vm.parks)
                 });
             });
         }
